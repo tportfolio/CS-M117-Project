@@ -3,6 +3,8 @@ Group To Do: API Documentation
 The Stack: PHP 5.4 Back end, MySQL 5.5 Database
 All Objects will be returned in JSON format
 
+DOMAIN NAME: http://phpbackend-m117group.rhcloud.com/
+
 
 Objects:
     Tasks:
@@ -25,7 +27,7 @@ Objects:
 
 
 
-/get_group_ID:
+/get_group_ID.php:
     Given a user's UID, return all groups that they are in
 
     Input: UID (int)
@@ -34,7 +36,7 @@ Objects:
     ex. input:  /get_group_ID?UID=123
         output: {"groupIDs": [1, 2, 3, 5, 10]}
 
-/get_group_members:
+/get_group_members.php:
     Given a groupID, return all userIDs
 
     Input: groupID(int)
@@ -45,7 +47,7 @@ Objects:
 
 
 
-/get_group_tasks:
+/get_group_tasks.php:
     Given a group ID, return all tasks that are part of the group
 
     Input: groupID (int)
@@ -72,58 +74,58 @@ Objects:
                     ]
                 }
 
-/get_user_tasks:
+/get_user_tasks.php:
     Given a user, find all tasks that are assigned to them
 
     Input: UID(int)
     Output: userTasks(Tasks Array)
 
-/get_user_info:
+/get_user_info.php:
     Given a UID, return user information (e.g. name, Year)
 
     Input: UID(int)
     Output: userData(User)
 
 
-/create_new_group:
+/create_new_group.php:
     Given a user, create a new group and return the new group ID
 
     Input: UID(int)
     Output: groupID(int)
 
-/create_new_task:
+/create_new_task.php:
     Given a group, create a new task 
     MAKE SURE TO ESCAPE THE STRINGS CORRECTLY
 
     Input: groupID(int), completed(bool), title(str), description(str), priority(int, default 0)
     Output: taskID(int)
 
-/create_new_user:
+/create_new_user.php:
     Returns a new UID
 
     Input: none
     Output: UID(int)
 
-/add_user_to_group:
+/add_user_to_group.php:
     Given a UID and a groupID, adds the user to the group
 
     Input: UID(int), groupID(int)
     Output: success(bool)
 
-/assign_task_to_user:
+/assign_task_to_user.php:
     Given a task number and a user, assign task to user
     MAKE SURE TO ONLY ASSIGN TASKS TO PEOPLE IN THE GROUP
 
     Input: taskID(int), UID(int)
     Output: success(bool)
 
-/remove_task:
+/remove_task.php:
     Given a task, delete it
 
     Input: taskID(int)
     Output: success(bool)
 
-/remove_user_from_group:
+/remove_user_from_group.php:
     Given a UID and groupID, remove the user from the group
 
     Input: groupID(int), UID(int)
