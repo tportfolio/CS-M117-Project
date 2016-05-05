@@ -1,0 +1,130 @@
+Group To Do: API Documentation
+
+The Stack: PHP 5.4 Back end, MySQL 5.5 Database
+All Objects will be returned in JSON format
+
+
+Objects:
+    Tasks:
+        bool completed
+        int taskID
+        int groupID
+        int assignedTo (UID, -1 if unassigned)
+        varchar(99) title
+        varchar(999) description
+        int priority (0-10, 10 highest)
+    
+    Group:
+        int groupID
+        int creatorID
+
+    User:
+        varchar(99) name
+        int year
+        int UID
+
+
+
+/get_group_ID:
+    Given a user's UID, return all groups that they are in
+
+    Input: UID (int)
+    Output: groupIDs (int Array)
+
+    ex. input:  /get_group_ID?UID=123
+        output: {"groupIDs": [1, 2, 3, 5, 10]}
+
+/get_group_members:
+    Given a groupID, return all userIDs
+
+    Input: groupID(int)
+    Output: userIDs(int Array)
+
+    ex. input:  /get_group_members?groupID=10
+        output: {"userIDs":[100, 101, 102]}
+
+
+
+/get_group_tasks:
+    Given a group ID, return all tasks that are part of the group
+
+    Input: groupID (int)
+    Output: groupTasks (Tasks Array)
+
+    ex. input: /get_group_tasks?groupID=10
+        output: {"groupTasks":[
+                    
+                    {"completed": false,
+                    "taskID": 100,
+                    "groupID": 10,
+                    "assignedTo": -1
+                    "title": "create API",
+                    "description": "write out all of the API calls",
+                    "priority": 10},
+
+                    {"completed": false,
+                    "taskID": 101,
+                    "groupID": 10,
+                    "assignedTo": -1
+                    "title": "create Backend",
+                    "description": "write out all of the API stuff",
+                    "priority": 10}
+                    ]
+                }
+
+/get_user_tasks:
+    Given a user, find all tasks that are assigned to them
+
+    Input: UID(int)
+    Output: userTasks(Tasks Array)
+
+/get_user_info:
+    Given a UID, return user information (e.g. name, Year)
+
+    Input: UID(int)
+    Output: userData(User)
+
+
+/create_new_group:
+    Given a user, create a new group and return the new group ID
+
+    Input: UID(int)
+    Output: groupID(int)
+
+/create_new_task:
+    Given a group, create a new task 
+    MAKE SURE TO ESCAPE THE STRINGS CORRECTLY
+
+    Input: groupID(int), completed(bool), title(str), description(str), priority(int, default 0)
+    Output: taskID(int)
+
+/create_new_user:
+    Returns a new UID
+
+    Input: none
+    Output: UID(int)
+
+/add_user_to_group:
+    Given a UID and a groupID, adds the user to the group
+
+    Input: UID(int), groupID(int)
+    Output: success(bool)
+
+/assign_task_to_user:
+    Given a task number and a user, assign task to user
+    MAKE SURE TO ONLY ASSIGN TASKS TO PEOPLE IN THE GROUP
+
+    Input: taskID(int), UID(int)
+    Output: success(bool)
+
+/remove_task:
+    Given a task, delete it
+
+    Input: taskID(int)
+    Output: success(bool)
+
+/remove_user_from_group:
+    Given a UID and groupID, remove the user from the group
+
+    Input: groupID(int), UID(int)
+    Output: success(bool)
