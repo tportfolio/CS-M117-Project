@@ -5,6 +5,7 @@ All Objects will be returned in JSON format
 
 DOMAIN NAME: http://phpbackend-m117group.rhcloud.com/
 
+EXAMPLE: http://phpbackend-m117group.rhcloud.com/get_group_ID.php?UID=1
 
 Objects:
     Tasks:
@@ -26,6 +27,11 @@ Objects:
         int UID
 
 
+/get_user_id.php:
+    Given a facebook ID, return the UID
+
+    Input: fbID (long) //technically is a string
+    Output: UID (int)
 
 /get_group_ID.php:
     Given a user's UID, return all groups that they are in
@@ -101,9 +107,9 @@ Objects:
     Output: taskID(int)
 
 /create_new_user.php:
-    Returns a new UID
+    Returns a new UID given a facebook ID
 
-    Input: none
+    Input: fbID (long)
     Output: UID(int)
 
 /add_user_to_group.php:
