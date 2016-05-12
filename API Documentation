@@ -27,13 +27,13 @@ Objects:
         int UID
 
 
-/get_user_id.php:
+/get_user_id.php: DONE
     Given a facebook ID, return the UID
 
     Input: fbID (long) //technically is a string
     Output: UID (int)
 
-/get_group_ID.php:
+/get_group_ID.php: DONE
     Given a user's UID, return all groups that they are in
 
     Input: UID (int)
@@ -42,7 +42,7 @@ Objects:
     ex. input:  /get_group_ID?UID=123
         output: {"groupIDs": [1, 2, 3, 5, 10]}
 
-/get_group_members.php:
+/get_group_members.php: DONE
     Given a groupID, return all userIDs
 
     Input: groupID(int)
@@ -86,7 +86,7 @@ Objects:
     Input: UID(int)
     Output: userTasks(Tasks Array)
 
-/get_user_info.php:
+/get_user_info.php: DONE
     Given a UID, return user information (e.g. name, Year)
 
     Input: UID(int)
