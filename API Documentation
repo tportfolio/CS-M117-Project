@@ -35,7 +35,7 @@ Objects:
     Input: UID (int)
     Output: groupIDs (int Array)
 
-    ex. input:  /get_group_ID?UID=123
+    ex. input:  /get_group_ID.php?UID=123
         output: {"groupIDs": [1, 2, 3, 5, 10]}
 
 /get_group_members.php: DONE
@@ -44,21 +44,27 @@ Objects:
     Input: groupID(int)
     Output: userIDs(int Array)
 
-    ex. input:  /get_group_members?groupID=10
+    ex. input:  /get_group_members.php?groupID=10
         output: {"userIDs":[100, 101, 102]}
 
 
 
-/get_group_tasks.php:
+/get_group_tasks.php: DONE
     Given a group ID, return all tasks that are part of the group
+
+    ***IMPORTANT***
+    NOTE: "completed" will return "0" or "1"
+
+    Why?  Because PHP is fuckin trash.
+    ***IMPORTANT***
 
     Input: groupID (int)
     Output: groupTasks (Tasks Array)
 
-    ex. input: /get_group_tasks?groupID=10
+    ex. input: /get_group_tasks.php?groupID=10
         output: {"groupTasks":[
                     
-                    {"completed": false,
+                    {"completed": "0",
                     "taskID": 100,
                     "groupID": 10,
                     "assignedTo": -1
@@ -66,7 +72,7 @@ Objects:
                     "description": "write out all of the API calls",
                     "priority": 10},
 
-                    {"completed": false,
+                    {"completed": "1",
                     "taskID": 101,
                     "groupID": 10,
                     "assignedTo": -1
@@ -76,7 +82,8 @@ Objects:
                     ]
                 }
 
-/get_user_tasks.php:
+
+/get_user_tasks.php: DONE
     Given a user, find all tasks that are assigned to them
 
     Input: UID(int)
@@ -92,10 +99,16 @@ Objects:
 /create_new_group.php: DONE
     Given a user, create a new group and return the new group ID
 
-    Input: UID(int)
+    Input: UID(int), groupName(str)
     Output: groupID(int)
 
-/create_new_task.php:
+/get_group_name.php: DONE
+    Given a groupID, return the name
+
+    Input: groupID(int)
+    Output: groupName(str)
+
+/create_new_task.php: DONE
     Given a group, create a new task 
     MAKE SURE TO ESCAPE THE STRINGS CORRECTLY
 
@@ -117,18 +130,19 @@ Objects:
     Input: UID(int), groupID(int)
     Output: newInsert(bool)
 
-/assign_task_to_user.php:
+/assign_task_to_user.php: DONE
     Given a task number and a user, assign task to user
     MAKE SURE TO ONLY ASSIGN TASKS TO PEOPLE IN THE GROUP
 
     Input: taskID(int), UID(int)
     Output: success(bool)
 
-/remove_task.php:
+/remove_task.php: DONE
     Given a task, delete it
+    If deleted, return true; if it doesn't exist, return false
 
     Input: taskID(int)
-    Output: success(bool)
+    Output: deleted(bool)
 
 /remove_user_from_group.php: DONE
     Given a UID and groupID, remove the user from the group
@@ -136,3 +150,10 @@ Objects:
 
     Input: groupID(int), UID(int)
     Output: deleted(bool)
+
+/complete_task.php: DONE
+    Given a taskID, set it to complete.
+    Returns true if it was previously incomplete, and false otherwise
+
+    Input: taskID(int)
+    Output: updated(bool)
