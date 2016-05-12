@@ -13,18 +13,14 @@ Objects:
         int taskID
         int groupID
         int assignedTo (UID, -1 if unassigned)
-        varchar(99) title
-        varchar(999) description
-        int priority (0-10, 10 highest)
+        varchar(999) title
+        varchar(9999) description
+        int priority (0-10, 10 highest, default 0)
     
     Group:
         int groupID
         int creatorID
 
-    User:
-        varchar(99) name
-        int year
-        int UID
 
 
 /get_user_id.php: DONE
@@ -90,10 +86,10 @@ Objects:
     Given a UID, return user information (e.g. name, Year)
 
     Input: UID(int)
-    Output: userData(User)
+    Output: name (str), Year (int)
 
 
-/create_new_group.php:
+/create_new_group.php: DONE
     Given a user, create a new group and return the new group ID
 
     Input: UID(int)
@@ -106,17 +102,20 @@ Objects:
     Input: groupID(int), completed(bool), title(str), description(str), priority(int, default 0)
     Output: taskID(int)
 
-/create_new_user.php:
-    Returns a new UID given a facebook ID
+/create_new_user.php: DONE
+    Returns a new UID given a facebook ID, name, and year
+    If fbID is already in use, returns UID that is associated with it instead
 
-    Input: fbID (long)
+    Input: fbID (long), name (varchar 99), year (int)
     Output: UID(int)
 
-/add_user_to_group.php:
+/add_user_to_group.php: DONE
     Given a UID and a groupID, adds the user to the group
+    Returns False if the user is already in the group
+    Returns True if the user is newly added
 
     Input: UID(int), groupID(int)
-    Output: success(bool)
+    Output: newInsert(bool)
 
 /assign_task_to_user.php:
     Given a task number and a user, assign task to user
@@ -131,8 +130,9 @@ Objects:
     Input: taskID(int)
     Output: success(bool)
 
-/remove_user_from_group.php:
+/remove_user_from_group.php: DONE
     Given a UID and groupID, remove the user from the group
+    Returns True if removed; returns false if user not in group
 
     Input: groupID(int), UID(int)
-    Output: success(bool)
+    Output: deleted(bool)
