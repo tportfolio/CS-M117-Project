@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/create_new_task"
+        android:title="Create New Task" />
+
+    <item android:id="@+id/add_new_group_member"
+        android:title="Add New Group Member" />
+
+    <item android:id="@+id/view_group_members"
+        android:title="View Group Members" />
+</menu>

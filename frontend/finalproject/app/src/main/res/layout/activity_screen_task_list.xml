@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
+
+    <!--
+        The content for the following ListView
+        should get from a java file.
+
+        For example:
+
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="csm117.finalproject.GroupList"
+    -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Tasks"
+        android:padding="@dimen/activity_vertical_margin"
+        android:textStyle="bold" />
+
+
+    <include layout="@layout/content_task_list"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"/>
+    <!-- TODO: may need to change layout_hight later-->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="191dp"
+            android:layout_height="match_parent"
+            android:text="Group Tasks"
+            android:id="@+id/show_group_tasks"
+            android:background="@color/colorPrimary" />
+
+        <Button
+            android:layout_width="191dp"
+            android:layout_height="match_parent"
+            android:text="My Tasks"
+            android:id="@+id/show_my_tasks"
+            android:background="@color/colorPrimary"/>
+    </LinearLayout>
+
+
+</LinearLayout>
