@@ -15,7 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OptionScreen"></activity>
+        <activity android:name=".OptionScreen" />
+        <activity android:name=".GroupList" />
+        <activity android:name=".TaskList" />
+        <activity
+            android:name=".Createroup"
+            android:label="@string/title_activity_createroup"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".CreateGroup" />
+        <activity android:name=".CreateTask"></activity>
     </application>
 
 </manifest>

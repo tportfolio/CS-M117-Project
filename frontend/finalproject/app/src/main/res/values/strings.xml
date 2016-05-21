@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Organize</string>
+    <string name="title_activity_createroup">Createroup</string>
 </resources>
