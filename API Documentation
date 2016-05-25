@@ -47,7 +47,11 @@ Objects:
     ex. input:  /get_group_members.php?groupID=10
         output: {"userIDs":[100, 101, 102]}
 
+/get_all_users.php: DONE
+    Returns all user names and corresponding IDs
 
+    ex. input: /get_all_users.php
+        output: {"names":["Jonathan","Alice","Eileen"],"UIDs":[1,2,8]}
 
 /get_group_tasks.php: DONE
     Given a group ID, return all tasks that are part of the group
