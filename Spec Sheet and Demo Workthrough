@@ -1,0 +1,77 @@
+**IMPORTANT: Remove "Create Task" From Options Screen****
+
+
+DEMO WORKFLOW:
+    Setup:  2 phones, both on the welcome screen
+            a. Login with phone 1
+                1. Ask for Display name, Year
+                2. Continue auth, login, go to options screen
+            b. Login with phone 2
+
+            - Explain that "Since these are new users, we need to create a group first, since they won't have any"
+            c. With phone 1, click "Create New Group"
+            d. Enter group information, enter
+            - This should redirect to the view groups page
+
+            e. On groups page, click the created group
+                - Should be new options on this new page: Add User and Create Task
+            f. Click on Add User
+                - Should redirect to a page that has all users (in this case there should only be 2)
+            g. Click on phone 2's user
+                1. Adds phone 2 to the group
+                - Should return to the group view
+
+            h. On Phone 1, click "Create Task" (in Group screen)
+            i. Insert task details
+                - Should return to Task List after
+            j. On Phone 2, click "View Groups"
+                - Should see the newly created group
+            k. On Phone 2, click the newly created group
+                - Should see the newly created task
+            l. On phone 2, click the newly created task
+                - Should take the user to the Task, should be an "assign user to task" button
+            m. On phone 2, Click "Assign user to task"
+                1. Should populate with a list of users in the group
+            n. On Phone 2, click user 1's name
+                - Should return phone 2 to the Task List
+            o. On Phone 1, return to Options menu
+            p. On Phone 1, click "View Tasks"
+                - Should be a task list of the newly created task
+            q. On Phone 1, click the task
+                - On Task View, there should be a "Completed" option
+            r. On Phone 1, click "Completed"
+                -The task should grey out/strike out
+
+LOGISTICS BEHIND EACH STEP
+    a. Login generates random number (should be a built in Java function)
+        Delay for a bit, then prompt for Username/Year
+        Use create_new_user.php (fbID=randValue, name = username, year = year)
+        Will return a USERID: use this for Future ID calls (call this UID)
+        ***Be sure to store your UID as a global variable****
+    b. Same as a
+    c. On "Create New Group", go to a new screen (can call it createGroup or something)
+    d.  Prompt for "Group Name"
+        On submit, use create_new_group.php (UID = UID, groupName = groupName)
+        Go to GroupList screen
+    d2. To populate GroupList, use get_group_ID.php (UID = UID)
+            for each value from the JSON, call get_group_name.php (groupID = groupID)
+            for each value returned, create a new group item
+
+    e. onclick, go to a new screen (can be called GroupInformation), pass groupID as global variable 
+        To populate this, use get_group_tasks.php
+    f. On Add User click, query get_all_users.php
+        Populate the list by matching usernames and UIDs (they'll be in the same order)
+    g. When the username is clicked, use add_user_to_group.php (UID = the associated UID, groupID = groupID as global variable)
+    h. When Create Task is clicked, go to Create Task page (remember to pass groupID as a var)
+    i. Prompt: title, description, priority (1-10)
+        use create_new_task.php (groupID = stored groupID, completed = False, title = input Title, description = input description, priority = priority)
+    j. View groups is jsut a get_group_ID.php call from d2
+    k. Task list is populated by get_group_tasks.php, using the groupID
+        for each value, populate a task (just the title)
+    l. Clicking into the task should show the rest of the values e.g. description, priority, completion, etc
+    m. Clicking Assign User should create a list of group users, done by get_group_members.php, then cross referencing that with get_user_info.php
+    n. Assign user by calling assign_task_to_user.php
+    o. Hit the back button I guess?
+    p. View tasks is done by get_user_tasks.php, populate the list with response
+    q. Go to Task Information screen, populated with information gotten from the repsonse from p.
+    r. You can make it completed by using complete_task.php
