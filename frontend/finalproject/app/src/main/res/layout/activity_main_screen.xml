@@ -10,6 +10,8 @@
     tools:context="csm117.finalproject.MainScreen"
     android:background="@drawable/organized">
 
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,4 +25,19 @@
         android:layout_centerHorizontal="true"
         android:onClick="loginAuth"
         />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        />
+
+
 </RelativeLayout>
