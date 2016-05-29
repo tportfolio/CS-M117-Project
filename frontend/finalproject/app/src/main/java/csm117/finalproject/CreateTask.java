@@ -16,7 +16,7 @@ public class CreateTask extends AppCompatActivity {
 
     public void returnToTaskList(View v){
         Handler handler = new Handler();
-        final Intent newIntent = new Intent(this, TaskList.class);
+        final Intent newIntent = new Intent(this, TaskView.class);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

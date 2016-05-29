@@ -1,6 +1,5 @@
 package csm117.finalproject;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
@@ -12,20 +11,22 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class TaskList extends AppCompatActivity {
+public class UserList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String[] my_tasks ={"My Important Task"};
+        String[] users ={"John Dough"};
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task_list);
+        setContentView(R.layout.activity_user_list);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, my_tasks);
-        final ListView listView = (ListView) findViewById(R.id.listView2);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, users);
+        final ListView listView = (ListView) findViewById(R.id.listView3);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
                 //stack overflow
                 for (int i = 0; i < listView.getChildCount(); i++) {
                     if (position == i)
@@ -33,34 +34,20 @@ public class TaskList extends AppCompatActivity {
                     else
                         listView.getChildAt(i).setBackgroundColor(Color.TRANSPARENT);
                 }
-                Button btn = (Button)findViewById(R.id.button13);
-                btn.setTextColor(0xFFFFFFFF);
-
-                Button btn2 = (Button)findViewById(R.id.button14);
-                btn2.setTextColor(0xFFFFFFFF);
-
+                Button btn = (Button)findViewById(R.id.button5);
+                btn.setBackgroundColor(0xFF438918);
             }
         });
     }
-    public void completeTask(View v){
-        final String[] empty = {};
 
+    public void viewGroup(View v) {
         Handler handler = new Handler();
-           Button btn = (Button)findViewById(R.id.button13);
-        btn.setTextColor(0xFF000000);
-
-        Button btn2 = (Button)findViewById(R.id.button14);
-        btn2.setTextColor(0xFF000000);
+        final Intent newIntent = new Intent(this, GroupView.class);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(TaskList.this, android.R.layout.simple_list_item_1, empty);
-                final ListView listView = (ListView) findViewById(R.id.listView2);
-                listView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+                startActivity(newIntent);
             }
-        }, 500);
-
+        }, 1000);
     }
-
 }

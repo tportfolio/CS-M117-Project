@@ -1,6 +1,5 @@
 package csm117.finalproject;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
@@ -12,16 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class TaskList extends AppCompatActivity {
+public class TaskView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String[] my_tasks ={"My Important Task"};
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task_list);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, my_tasks);
-        final ListView listView = (ListView) findViewById(R.id.listView2);
+        setContentView(R.layout.activity_task_view);
+        String[] group_tasks = {"My Important Task"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, group_tasks);
+        final ListView listView = (ListView) findViewById(R.id.listView4);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -33,34 +31,24 @@ public class TaskList extends AppCompatActivity {
                     else
                         listView.getChildAt(i).setBackgroundColor(Color.TRANSPARENT);
                 }
-                Button btn = (Button)findViewById(R.id.button13);
+                Button btn = (Button)findViewById(R.id.button10);
                 btn.setTextColor(0xFFFFFFFF);
 
-                Button btn2 = (Button)findViewById(R.id.button14);
+                Button btn2 = (Button)findViewById(R.id.button12);
                 btn2.setTextColor(0xFFFFFFFF);
 
             }
         });
     }
-    public void completeTask(View v){
-        final String[] empty = {};
 
+    public void assignUser(View v) {
         Handler handler = new Handler();
-           Button btn = (Button)findViewById(R.id.button13);
-        btn.setTextColor(0xFF000000);
-
-        Button btn2 = (Button)findViewById(R.id.button14);
-        btn2.setTextColor(0xFF000000);
+        final Intent newIntent = new Intent(this, AssignUser.class);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(TaskList.this, android.R.layout.simple_list_item_1, empty);
-                final ListView listView = (ListView) findViewById(R.id.listView2);
-                listView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+                startActivity(newIntent);
             }
-        }, 500);
-
+        }, 1000);
     }
-
 }

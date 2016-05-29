@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="csm117.finalproject">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,8 +10,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
         <activity android:name=".MainScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,15 +25,21 @@
             android:label="@string/title_activity_createroup"
             android:theme="@style/AppTheme" />
         <activity android:name=".CreateGroup" />
-        <activity android:name=".CreateTask"></activity>
+        <activity android:name=".CreateTask" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
         <provider
-            android:authorities="com.facebook.app.FacebookContentProvider"
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true"/>
+            android:authorities="com.facebook.app.FacebookContentProvider"
+            android:exported="true" />
 
+        <activity android:name=".GroupView" />
+        <activity android:name=".UserList" />
+        <activity android:name=".TaskView" />
+        <activity android:name=".AssignUser"></activity>
     </application>
 
 </manifest>
