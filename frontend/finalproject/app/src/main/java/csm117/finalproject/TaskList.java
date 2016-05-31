@@ -12,11 +12,34 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import org.json.*;
+import org.apache.commons.io.IOUtils;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.*;
+
 public class TaskList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String[] my_tasks ={"My Important Task"};
+        String[] my_tasks ={};
+        String backend = "http://phpbackend-m117group.rhcloud.com/get_user_tasks.php";
+        try {
+            String json_url = IOUtils.toString(new URL(backend));
+            JSONObject object = new JSONObject(json_url);
+            JSONArray tasks = (JSONArray) object.get("my_tasks");
+        }
+        catch (MalformedURLException e) {
+            System.err.println("bad url");
+        }
+        catch (IOException e) {
+            System.err.println("bad io");
+        }
+        catch (JSONException e) {
+            System.err.println("bad json");
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
 
@@ -43,10 +66,10 @@ public class TaskList extends AppCompatActivity {
         });
     }
     public void completeTask(View v){
-        final String[] empty = {};
+        final String[] tasks = {};
 
         Handler handler = new Handler();
-           Button btn = (Button)findViewById(R.id.button13);
+        Button btn = (Button)findViewById(R.id.button13);
         btn.setTextColor(0xFF000000);
 
         Button btn2 = (Button)findViewById(R.id.button14);
@@ -54,7 +77,7 @@ public class TaskList extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(TaskList.this, android.R.layout.simple_list_item_1, empty);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(TaskList.this, android.R.layout.simple_list_item_1, tasks);
                 final ListView listView = (ListView) findViewById(R.id.listView2);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();

@@ -11,13 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import org.json.*;
+import java.io.*;
+import java.util.*;
+
 public class AssignUser extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assign_user);
-        String[] users ={"Timothy Portfolio"};
+        String[] users = {};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, users);
         final ListView listView = (ListView) findViewById(R.id.listView5);
         listView.setAdapter(adapter);

@@ -11,13 +11,36 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import org.apache.commons.io.IOUtils;
+import org.json.*;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.*;
+
 public class TaskView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_view);
-        String[] group_tasks = {"My Important Task"};
+        String[] group_tasks = {};
+
+        String backend = "http://phpbackend-m117group.rhcloud.com/get_group_tasks.php";
+        try {
+            String json_url = IOUtils.toString(new URL(backend));
+            JSONObject object = new JSONObject(json_url);
+            JSONArray tasks = (JSONArray) object.get("group_tasks");
+        }
+        catch (MalformedURLException e) {
+            System.err.println("bad url");
+        }
+        catch (IOException e) {
+            System.err.println("bad io");
+        }
+        catch (JSONException e) {
+            System.err.println("bad json");
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, group_tasks);
         final ListView listView = (ListView) findViewById(R.id.listView4);
         listView.setAdapter(adapter);

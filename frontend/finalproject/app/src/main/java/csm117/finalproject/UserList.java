@@ -11,11 +11,33 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import org.apache.commons.io.IOUtils;
+import org.json.*;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.*;
+
 public class UserList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String[] users ={"John Dough"};
+        String[] users ={};
+        String backend = "http://phpbackend-m117group.rhcloud.com/get_all_users.php";
+        try {
+            String json_url = IOUtils.toString(new URL(backend));
+            JSONObject object = new JSONObject(json_url);
+            JSONArray user = (JSONArray) object.get("users");
+        }
+        catch (MalformedURLException e) {
+            System.err.println("bad url");
+        }
+        catch (IOException e) {
+            System.err.println("bad io");
+        }
+        catch (JSONException e) {
+            System.err.println("bad json");
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
 
